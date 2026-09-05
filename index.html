@@ -27,7 +27,6 @@
       "name": "松本徹ジャーナル",
       "alternateName": "Toru Matsumoto Journal",
       "url": "https://matsumoto-shoten.jazzweb0314.workers.dev/",
-      "email": "tmatsumoto045@gmail.com",
       "description": "自動車業界で40年以上の実務経験を持つ技術者による、品質エンジニアリング・コンサルティング。品質課題の現状診断、改善プロセスの設計・伴走、海外拠点への品質基準移管を支援します。",
       "areaServed": [
         { "@type": "Country", "name": "日本" },
@@ -1310,8 +1309,8 @@
 
       <div class="contact-direct">
         <p class="cd-lead">下記のアドレス宛に、直接メールをお送りください。</p>
-        <a class="cd-mail" href="mailto:tmatsumoto045@gmail.com?subject=%E3%80%90%E6%9D%BE%E6%9C%AC%E5%BE%B9%E5%95%86%E5%BA%97%E3%80%91%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B">tmatsumoto045@gmail.com</a>
-        <p class="cd-note">上のアドレスを押すと、件名を入れた状態でメールソフトが立ち上がります。うまく開かない場合は、アドレスをコピーしてお使いください。</p>
+        <a class="cd-mail js-mail" href="#" data-subject="%E3%80%90%E6%9D%BE%E6%9C%AC%E5%BE%B9%E5%95%86%E5%BA%97%E3%80%91%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B">メールアドレスを表示</a>
+        <p class="cd-note">上のボタンを押すとメールアドレスが表示され、件名を入れた状態でメールソフトが立ち上がります(スパム対策のため、ページ内には最初からは表示していません)。うまく開かない場合は、表示されたアドレスをコピーしてお使いください。</p>
         <div class="cd-guide">
           <h3>お書き添えいただきたいこと</h3>
           <ul>
@@ -1347,8 +1346,8 @@
 
       <div class="contact-direct">
         <p class="cd-lead">Please email me directly at the address below.</p>
-        <a class="cd-mail" href="mailto:tmatsumoto045@gmail.com?subject=Enquiry%20via%20website">tmatsumoto045@gmail.com</a>
-        <p class="cd-note">Tapping the address opens your mail app with the subject filled in. If it doesn't open, just copy the address instead.</p>
+        <a class="cd-mail js-mail" href="#" data-subject="Enquiry%20via%20website">Show email address</a>
+        <p class="cd-note">Tapping the button reveals the email address and opens your mail app with the subject filled in (hidden by default to deter spam bots). If it doesn't open, just copy the revealed address instead.</p>
         <div class="cd-guide">
           <h3>Helpful things to include</h3>
           <ul>
@@ -1463,6 +1462,20 @@
 
   document.getElementById('langBtn').addEventListener('click', () => setLang(currentLang === 'ja' ? 'en' : 'ja'));
   document.getElementById('langBtnMobile').addEventListener('click', () => setLang(currentLang === 'ja' ? 'en' : 'ja'));
+
+  // Contact email: assembled at runtime (not present as plain text in the HTML source) to deter spam-harvesting bots.
+  const MAIL_USER = 'tmatsumoto045';
+  const MAIL_DOMAIN = 'gmail.com';
+  document.querySelectorAll('.js-mail').forEach(el => {
+    el.addEventListener('click', (e) => {
+      e.preventDefault();
+      const address = MAIL_USER + '@' + MAIL_DOMAIN;
+      const subject = el.getAttribute('data-subject') || '';
+      el.textContent = address;
+      el.href = 'mailto:' + address + (subject ? ('?subject=' + subject) : '');
+      window.location.href = el.href;
+    }, { once: true });
+  });
 
 </script>
 
