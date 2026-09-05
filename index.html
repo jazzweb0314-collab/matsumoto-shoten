@@ -1308,13 +1308,38 @@
       </div>
 
       <div class="contact-direct">
-        <p class="cd-lead">下記のアドレス宛に、直接メールをお送りください。</p>
-        <a class="cd-mail js-mail" href="#" data-subject="%E3%80%90%E6%9D%BE%E6%9C%AC%E5%BE%B9%E5%95%86%E5%BA%97%E3%80%91%E3%81%8A%E5%95%8F%E3%81%84%E5%90%88%E3%82%8F%E3%81%9B">メールアドレスを表示</a>
-        <p class="cd-note">上のボタンを押すとメールアドレスが表示され、件名を入れた状態でメールソフトが立ち上がります(スパム対策のため、ページ内には最初からは表示していません)。うまく開かない場合は、表示されたアドレスをコピーしてお使いください。</p>
+        <p class="cd-lead">下記のフォームに必要事項をご記入のうえ、送信してください。</p>
+        <form class="cform contact-form" data-lang="ja" novalidate>
+          <input type="hidden" name="access_key" value="486e63b1-b568-49dd-8bf0-228f8eb43bb2">
+          <input type="hidden" name="subject" value="【松本徹商店】お問い合わせ">
+          <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off">
+          <div class="field">
+            <label for="cf-ja-name">お名前<span class="cf-req">必須</span></label>
+            <input id="cf-ja-name" type="text" name="name" required>
+          </div>
+          <div class="field">
+            <label for="cf-ja-email">メールアドレス<span class="cf-req">必須</span></label>
+            <input id="cf-ja-email" type="email" name="email" required>
+          </div>
+          <div class="field">
+            <label for="cf-ja-address">ご住所<span class="cf-opt">任意</span></label>
+            <input id="cf-ja-address" type="text" name="address">
+          </div>
+          <div class="field">
+            <label for="cf-ja-phone">お電話番号<span class="cf-opt">任意</span></label>
+            <input id="cf-ja-phone" type="tel" name="phone">
+          </div>
+          <div class="field">
+            <label for="cf-ja-message">お問い合わせ内容<span class="cf-req">必須</span></label>
+            <textarea id="cf-ja-message" name="message" rows="6" required></textarea>
+          </div>
+          <button type="submit" class="btn">送信する</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
         <div class="cd-guide">
           <h3>お書き添えいただきたいこと</h3>
           <ul>
-            <li>お名前と会社名・屋号</li>
+            <li>会社名・屋号(あれば)</li>
             <li>ご相談の種類(現状診断 / 改善プロセスの設計・伴走 / 海外拠点への品質移管支援 / その他)</li>
             <li>現在の状況や課題感</li>
             <li>ご希望の時期</li>
@@ -1345,13 +1370,38 @@
       </div>
 
       <div class="contact-direct">
-        <p class="cd-lead">Please email me directly at the address below.</p>
-        <a class="cd-mail js-mail" href="#" data-subject="Enquiry%20via%20website">Show email address</a>
-        <p class="cd-note">Tapping the button reveals the email address and opens your mail app with the subject filled in (hidden by default to deter spam bots). If it doesn't open, just copy the revealed address instead.</p>
+        <p class="cd-lead">Please fill in the form below and send it directly.</p>
+        <form class="cform contact-form" data-lang="en" novalidate>
+          <input type="hidden" name="access_key" value="486e63b1-b568-49dd-8bf0-228f8eb43bb2">
+          <input type="hidden" name="subject" value="[Toru Matsumoto Journal] Website enquiry">
+          <input type="checkbox" name="botcheck" class="honeypot" tabindex="-1" autocomplete="off">
+          <div class="field">
+            <label for="cf-en-name">Name<span class="cf-req">Required</span></label>
+            <input id="cf-en-name" type="text" name="name" required>
+          </div>
+          <div class="field">
+            <label for="cf-en-email">Email<span class="cf-req">Required</span></label>
+            <input id="cf-en-email" type="email" name="email" required>
+          </div>
+          <div class="field">
+            <label for="cf-en-address">Address<span class="cf-opt">Optional</span></label>
+            <input id="cf-en-address" type="text" name="address">
+          </div>
+          <div class="field">
+            <label for="cf-en-phone">Phone<span class="cf-opt">Optional</span></label>
+            <input id="cf-en-phone" type="tel" name="phone">
+          </div>
+          <div class="field">
+            <label for="cf-en-message">Message<span class="cf-req">Required</span></label>
+            <textarea id="cf-en-message" name="message" rows="6" required></textarea>
+          </div>
+          <button type="submit" class="btn">Send</button>
+          <p class="form-status" role="status" aria-live="polite"></p>
+        </form>
         <div class="cd-guide">
           <h3>Helpful things to include</h3>
           <ul>
-            <li>Your name and company</li>
+            <li>Your company (if any)</li>
             <li>What you'd like to discuss (diagnosing an issue / designing an improvement process / transferring standards overseas / something else)</li>
             <li>Where things stand now and what's concerning you</li>
             <li>Your rough timeline</li>
@@ -1463,18 +1513,55 @@
   document.getElementById('langBtn').addEventListener('click', () => setLang(currentLang === 'ja' ? 'en' : 'ja'));
   document.getElementById('langBtnMobile').addEventListener('click', () => setLang(currentLang === 'ja' ? 'en' : 'ja'));
 
-  // Contact email: assembled at runtime (not present as plain text in the HTML source) to deter spam-harvesting bots.
-  const MAIL_USER = 'tmatsumoto045';
-  const MAIL_DOMAIN = 'gmail.com';
-  document.querySelectorAll('.js-mail').forEach(el => {
-    el.addEventListener('click', (e) => {
+  // Contact form: submitted via Web3Forms (no backend / mail server needed).
+  // The recipient's email address is never printed in the page source.
+  document.querySelectorAll('.cform').forEach(form => {
+    const lang = form.getAttribute('data-lang') || 'ja';
+    const statusEl = form.querySelector('.form-status');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const honeypot = form.querySelector('.honeypot');
+    const MSG = {
+      ja: {
+        sending: '送信中…',
+        ok: '送信しました。ありがとうございます。2〜3営業日以内にご返信します。',
+        err: '送信に失敗しました。恐れ入りますが、時間をおいて再度お試しください。'
+      },
+      en: {
+        sending: 'Sending…',
+        ok: "Thank you — your message has been sent. I'll reply within 2–3 business days.",
+        err: 'Sorry, something went wrong. Please try again in a little while.'
+      }
+    };
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const address = MAIL_USER + '@' + MAIL_DOMAIN;
-      const subject = el.getAttribute('data-subject') || '';
-      el.textContent = address;
-      el.href = 'mailto:' + address + (subject ? ('?subject=' + subject) : '');
-      window.location.href = el.href;
-    }, { once: true });
+      if (honeypot && honeypot.checked) return; // bot trap
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      submitBtn.disabled = true;
+      statusEl.className = 'form-status';
+      statusEl.textContent = MSG[lang].sending;
+      try {
+        const data = Object.fromEntries(new FormData(form));
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify(data)
+        });
+        const json = await res.json().catch(() => ({}));
+        if (res.status === 200 && json.success) {
+          statusEl.className = 'form-status ok';
+          statusEl.textContent = MSG[lang].ok;
+          form.reset();
+        } else {
+          statusEl.className = 'form-status ng';
+          statusEl.textContent = MSG[lang].err;
+        }
+      } catch (err) {
+        statusEl.className = 'form-status ng';
+        statusEl.textContent = MSG[lang].err;
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
   });
 
 </script>
