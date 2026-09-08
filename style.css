@@ -154,6 +154,11 @@ table.spec-table th{width:170px; font-weight:500; font-size:13px; color:var(--mu
 .prose p{margin-bottom:20px; color:#3A3A3A;}
 .prose h2{font-size:20px; margin:36px 0 14px; font-weight:700;}
 .prose blockquote{border-left:3px solid var(--accent); padding-left:18px; margin:24px 0; color:var(--ink);}
+.related-posts{max-width:700px; margin:0 auto; padding:0 24px 10px;}
+.related-posts h3{font-size:12px; letter-spacing:.06em; color:var(--accent); text-transform:uppercase; margin-bottom:12px;}
+.related-posts ul{list-style:none; display:flex; flex-direction:column; gap:0;}
+.related-posts li a{font-size:14px; color:var(--ink); border-bottom:1px solid var(--line); padding:10px 0; display:block;}
+.related-posts li a:hover{color:var(--accent);}
 .article-nav{max-width:700px; margin:0 auto; padding:0 24px 60px; display:flex; justify-content:space-between; font-size:13px;}
 .article-nav a{color:var(--accent);}
 
