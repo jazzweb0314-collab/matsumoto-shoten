@@ -154,6 +154,9 @@ table.spec-table th{width:170px; font-weight:500; font-size:13px; color:var(--mu
 .prose p{margin-bottom:20px; color:#3A3A3A;}
 .prose h2{font-size:20px; margin:36px 0 14px; font-weight:700;}
 .prose blockquote{border-left:3px solid var(--accent); padding-left:18px; margin:24px 0; color:var(--ink);}
+.prose figure.post-image{margin:28px 0; text-align:center;}
+.prose figure.post-image img{max-width:100%; height:auto; border-radius:6px;}
+.prose figure.post-image figcaption{font-size:13px; color:var(--muted); margin-top:8px; font-style:italic;}
 .related-posts{max-width:700px; margin:0 auto; padding:0 24px 10px;}
 .related-posts h3{font-size:12px; letter-spacing:.06em; color:var(--accent); text-transform:uppercase; margin-bottom:12px;}
 .related-posts ul{list-style:none; display:flex; flex-direction:column; gap:0;}
